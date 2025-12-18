@@ -59,8 +59,7 @@ const MatrixView = ({ customers, onCellClick, highlightedCustomer, compact = fal
         <span>×</span>
         <div className="flex items-center gap-1">
           <span className="font-medium">横軸:</span>
-          <span className="text-primary font-bold">行動</span>
-          <span className="hidden xs:inline">(ステータス)</span>
+          <span className="text-primary font-bold">商談ステータス</span>
         </div>
       </div>
 
@@ -78,7 +77,7 @@ const MatrixView = ({ customers, onCellClick, highlightedCustomer, compact = fal
                   className={`${compact ? 'p-1 sm:p-2 text-[8px] sm:text-[10px]' : 'p-1.5 sm:p-3 text-[9px] sm:text-xs'} text-center font-medium text-text-secondary bg-bg-light ${
                     index === actionStatusOrder.length - 1 ? 'rounded-tr-lg' : ''
                   }`}
-                  title={`行動: ${status}`}
+                  title={`商談ステータス: ${status}`}
                 >
                   <span className="sm:hidden">{shortStatusLabels[status]}</span>
                   <span className="hidden sm:inline">{status}</span>
