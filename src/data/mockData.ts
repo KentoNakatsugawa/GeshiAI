@@ -22,16 +22,6 @@ const getTimeMinutesAgo = (minutes: number): Date => {
 // モック顧客データ - B2チーム (10席)
 export const mockCustomersTeamB2: Customer[] = [
   {
-    id: 'b2-1',
-    customerName: '山田 太郎',
-    meetingTime: getTimeMinutesAgo(45),
-    representativeName: representativesB2[0],
-    hotness: 'S',
-    status: 'クロージング',
-    seatNumber: 1,
-    team: 'B2',
-  },
-  {
     id: 'b2-2',
     customerName: '鈴木 花子',
     meetingTime: getTimeMinutesAgo(32),

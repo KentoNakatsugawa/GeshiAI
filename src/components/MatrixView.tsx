@@ -9,6 +9,16 @@ interface MatrixViewProps {
   compact?: boolean;
 }
 
+// モバイル用の短縮ラベル
+const shortStatusLabels: Record<ActionStatus, string> = {
+  'クロージング': 'CL',
+  '入金確認': '入金',
+  '納車流れ': '納車',
+  '初期スコア車両提示': '車両',
+  'スコアプレゼン': 'SP',
+  'ヒアリング': 'HR',
+};
+
 const MatrixView = ({ customers, onCellClick, highlightedCustomer, compact = false }: MatrixViewProps) => {
   const [selectedCell, setSelectedCell] = useState<string | null>(null);
   const matrixData = generateMatrixData(customers);
@@ -34,26 +44,28 @@ const MatrixView = ({ customers, onCellClick, highlightedCustomer, compact = fal
   };
 
   return (
-    <div className={`bg-white rounded-2xl shadow-sm border border-border-accent ${compact ? 'p-4' : 'p-6'}`}>
-      <h2 className={`font-bold text-text-primary ${compact ? 'text-base mb-4' : 'text-lg mb-6'}`}>
+    <div className={`bg-white rounded-2xl shadow-sm border border-border-accent ${compact ? 'p-3 sm:p-4' : 'p-3 sm:p-6'}`}>
+      <h2 className={`font-bold text-text-primary ${compact ? 'text-sm sm:text-base mb-3 sm:mb-4' : 'text-base sm:text-lg mb-4 sm:mb-6'}`}>
         {highlightedCustomer ? '現在の商談位置' : '商談マトリックス'}
       </h2>
 
-      <div className="overflow-x-auto">
-        <table className="w-full border-collapse">
+      <div className="overflow-x-auto -mx-3 sm:mx-0 px-3 sm:px-0">
+        <table className="w-full border-collapse min-w-[320px]">
           <thead>
             <tr>
-              <th className={`${compact ? 'p-2 text-xs' : 'p-3 text-sm'} text-left font-medium text-text-secondary bg-bg-light rounded-tl-lg`}>
-                HOT度 / 行動
+              <th className={`${compact ? 'p-1 sm:p-2 text-[10px] sm:text-xs' : 'p-1.5 sm:p-3 text-[10px] sm:text-sm'} text-left font-medium text-text-secondary bg-bg-light rounded-tl-lg w-12 sm:w-auto`}>
+                <span className="hidden sm:inline">HOT度 / 行動</span>
+                <span className="sm:hidden">HOT</span>
               </th>
               {actionStatusOrder.map((status, index) => (
                 <th
                   key={status}
-                  className={`${compact ? 'p-2 text-[10px] min-w-[70px]' : 'p-3 text-xs min-w-[100px]'} text-center font-medium text-text-secondary bg-bg-light ${
+                  className={`${compact ? 'p-1 sm:p-2 text-[8px] sm:text-[10px]' : 'p-1.5 sm:p-3 text-[9px] sm:text-xs'} text-center font-medium text-text-secondary bg-bg-light ${
                     index === actionStatusOrder.length - 1 ? 'rounded-tr-lg' : ''
                   }`}
                 >
-                  {status}
+                  <span className="sm:hidden">{shortStatusLabels[status]}</span>
+                  <span className="hidden sm:inline">{status}</span>
                 </th>
               ))}
             </tr>
@@ -62,11 +74,11 @@ const MatrixView = ({ customers, onCellClick, highlightedCustomer, compact = fal
             {hotnessOrder.map((hotness, rowIndex) => (
               <tr key={hotness}>
                 <td
-                  className={`${compact ? 'p-2' : 'p-3'} font-bold text-center ${hotnessTextColors[hotness]} bg-bg-light ${
+                  className={`${compact ? 'p-1 sm:p-2' : 'p-1.5 sm:p-3'} font-bold text-center ${hotnessTextColors[hotness]} bg-bg-light ${
                     rowIndex === hotnessOrder.length - 1 ? 'rounded-bl-lg' : ''
                   }`}
                 >
-                  <span className={`inline-flex items-center justify-center ${compact ? 'w-6 h-6 text-xs' : 'w-8 h-8'} rounded-full ${hotnessColors[hotness]} text-white`}>
+                  <span className={`inline-flex items-center justify-center ${compact ? 'w-5 h-5 sm:w-6 sm:h-6 text-[10px] sm:text-xs' : 'w-6 h-6 sm:w-8 sm:h-8 text-xs sm:text-sm'} rounded-full ${hotnessColors[hotness]} text-white`}>
                     {hotness}
                   </span>
                 </td>
@@ -81,7 +93,7 @@ const MatrixView = ({ customers, onCellClick, highlightedCustomer, compact = fal
                     <td
                       key={key}
                       onClick={() => !compact && handleCellClick(hotness, status)}
-                      className={`${compact ? 'p-2' : 'p-3'} text-center border border-border-accent transition-all duration-200 ${
+                      className={`${compact ? 'p-1 sm:p-2' : 'p-1.5 sm:p-3'} text-center border border-border-accent transition-all duration-200 ${
                         isHighlighted
                           ? 'animate-pulse-highlight bg-primary/20 border-primary border-2 shadow-lg'
                           : isSelected
@@ -91,17 +103,17 @@ const MatrixView = ({ customers, onCellClick, highlightedCustomer, compact = fal
                     >
                       {isHighlighted ? (
                         <div className="relative">
-                          <span className={`font-bold ${compact ? 'text-base' : 'text-lg'} text-primary animate-bounce-subtle`}>
-                            {compact ? 'HERE' : '現在地'}
+                          <span className={`font-bold ${compact ? 'text-xs sm:text-base' : 'text-sm sm:text-lg'} text-primary animate-bounce-subtle`}>
+                            {compact ? '●' : '現在地'}
                           </span>
-                          <div className="absolute -top-1 -right-1 w-3 h-3 bg-primary rounded-full animate-ping" />
+                          <div className="absolute -top-1 -right-1 w-2 h-2 sm:w-3 sm:h-3 bg-primary rounded-full animate-ping" />
                         </div>
                       ) : count > 0 ? (
-                        <span className={`font-bold ${compact ? 'text-sm' : 'text-lg'} ${hotnessTextColors[hotness]}`}>
-                          {count}人
+                        <span className={`font-bold ${compact ? 'text-xs sm:text-sm' : 'text-sm sm:text-lg'} ${hotnessTextColors[hotness]}`}>
+                          {count}
                         </span>
                       ) : (
-                        <span className={`text-text-secondary ${compact ? 'text-xs' : 'text-sm'}`}>-</span>
+                        <span className={`text-text-secondary ${compact ? 'text-[10px] sm:text-xs' : 'text-xs sm:text-sm'}`}>-</span>
                       )}
                     </td>
                   );
@@ -114,19 +126,19 @@ const MatrixView = ({ customers, onCellClick, highlightedCustomer, compact = fal
 
       {/* 選択されたセルの顧客リスト（コンパクトモードでない場合のみ表示） */}
       {!compact && selectedCell && (
-        <div className="mt-6 p-4 bg-bg-light rounded-xl">
-          <h3 className="font-medium text-text-primary mb-3">該当顧客</h3>
+        <div className="mt-4 sm:mt-6 p-3 sm:p-4 bg-bg-light rounded-xl">
+          <h3 className="font-medium text-text-primary mb-2 sm:mb-3 text-sm sm:text-base">該当顧客</h3>
           <div className="space-y-2">
             {(matrixData.get(selectedCell) || []).map((customer) => (
               <div
                 key={customer.id}
-                className="flex items-center justify-between bg-white p-3 rounded-lg border border-border-accent"
+                className="flex flex-col xs:flex-row xs:items-center justify-between bg-white p-2 sm:p-3 rounded-lg border border-border-accent gap-1 xs:gap-0"
               >
-                <div>
-                  <span className="font-medium text-text-primary">{customer.customerName}</span>
-                  <span className="text-sm text-text-secondary ml-3">担当: {customer.representativeName}</span>
+                <div className="flex-1 min-w-0">
+                  <span className="font-medium text-text-primary text-sm sm:text-base block xs:inline">{customer.customerName}</span>
+                  <span className="text-xs sm:text-sm text-text-secondary xs:ml-3 block xs:inline truncate">担当: {customer.representativeName.replace(/^B[12]\s/, '')}</span>
                 </div>
-                <span className={`${hotnessColors[customer.hotness]} text-white text-xs font-bold px-2 py-1 rounded-full`}>
+                <span className={`${hotnessColors[customer.hotness]} text-white text-xs font-bold px-2 py-1 rounded-full self-start xs:self-auto`}>
                   {customer.hotness}
                 </span>
               </div>
