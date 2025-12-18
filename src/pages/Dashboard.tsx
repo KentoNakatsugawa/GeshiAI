@@ -58,7 +58,7 @@ const Dashboard = () => {
         {/* Page Header */}
         <div className="mb-8">
           <h1 className="text-2xl font-bold text-text-primary mb-2">
-            座席配置ダッシュボード
+            商談テーブル
           </h1>
           <p className="text-text-secondary">
             リアルタイムで商談状況を確認できます

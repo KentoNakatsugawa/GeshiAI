@@ -27,7 +27,7 @@ const Header = () => {
                   : 'text-text-secondary hover:text-primary hover:bg-bg-light'
               }`}
             >
-              座席配置
+              商談テーブル
             </Link>
             <Link
               to="/matrix"
