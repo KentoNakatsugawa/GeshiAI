@@ -96,8 +96,11 @@ const SeatCard = ({ seat }: SeatCardProps) => {
     >
       <div className={`w-full bg-gradient-to-b ${colors.bg} rounded-xl sm:rounded-2xl border-2 ${colors.border} shadow-sm p-2 sm:p-4 relative overflow-hidden transition-all duration-300 group-hover:shadow-xl group-hover:scale-[1.03]`}>
         {/* HOT度バッジ */}
-        <div className={`absolute top-1.5 sm:top-2 right-1.5 sm:right-2 ${hotnessColors[customer.hotness]} text-white text-[10px] sm:text-xs font-bold w-5 sm:w-7 h-5 sm:h-7 rounded-full flex items-center justify-center shadow-lg z-20`}>
-          {customer.hotness}
+        <div className="absolute top-1.5 sm:top-2 right-1.5 sm:right-2 z-20 flex flex-col items-center">
+          <span className="text-[6px] sm:text-[8px] font-bold text-gray-500 leading-none mb-0.5">HOT</span>
+          <div className={`${hotnessColors[customer.hotness]} text-white text-[10px] sm:text-xs font-bold w-5 sm:w-7 h-5 sm:h-7 rounded-full flex items-center justify-center shadow-lg`}>
+            {customer.hotness}
+          </div>
         </div>
 
         {/* 座席番号 */}
@@ -153,9 +156,12 @@ const SeatCard = ({ seat }: SeatCardProps) => {
 
         {/* 行動ステータス */}
         <div className="mt-1.5 sm:mt-2 text-center">
-          <span className={`inline-block text-[8px] sm:text-[10px] px-2 sm:px-3 py-0.5 sm:py-1 rounded-full font-medium ${colors.light} ${colors.text} border ${colors.border}`}>
-            {customer.status}
-          </span>
+          <div className="inline-flex flex-col items-center">
+            <span className="text-[6px] sm:text-[8px] font-bold text-gray-400 leading-none mb-0.5">行動</span>
+            <span className={`inline-block text-[8px] sm:text-[10px] px-2 sm:px-3 py-0.5 sm:py-1 rounded-full font-medium ${colors.light} ${colors.text} border ${colors.border}`}>
+              {customer.status}
+            </span>
+          </div>
         </div>
       </div>
 
