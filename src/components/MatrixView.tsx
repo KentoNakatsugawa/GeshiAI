@@ -45,16 +45,31 @@ const MatrixView = ({ customers, onCellClick, highlightedCustomer, compact = fal
 
   return (
     <div className={`bg-white rounded-2xl shadow-sm border border-border-accent ${compact ? 'p-3 sm:p-4' : 'p-3 sm:p-6'}`}>
-      <h2 className={`font-bold text-text-primary ${compact ? 'text-sm sm:text-base mb-3 sm:mb-4' : 'text-base sm:text-lg mb-4 sm:mb-6'}`}>
+      <h2 className={`font-bold text-text-primary ${compact ? 'text-sm sm:text-base mb-2 sm:mb-3' : 'text-base sm:text-lg mb-3 sm:mb-4'}`}>
         {highlightedCustomer ? '現在の商談位置' : '商談マトリックス'}
       </h2>
+
+      {/* 軸の説明 */}
+      <div className={`flex items-center gap-2 sm:gap-4 mb-3 sm:mb-4 ${compact ? 'text-[10px] sm:text-xs' : 'text-xs sm:text-sm'} text-text-secondary`}>
+        <div className="flex items-center gap-1">
+          <span className="font-medium">縦軸:</span>
+          <span className="text-primary font-bold">HOT度</span>
+          <span className="hidden xs:inline">(S〜E)</span>
+        </div>
+        <span>×</span>
+        <div className="flex items-center gap-1">
+          <span className="font-medium">横軸:</span>
+          <span className="text-primary font-bold">行動</span>
+          <span className="hidden xs:inline">(ステータス)</span>
+        </div>
+      </div>
 
       <div className="overflow-x-auto -mx-3 sm:mx-0 px-3 sm:px-0">
         <table className="w-full border-collapse min-w-[320px]">
           <thead>
             <tr>
               <th className={`${compact ? 'p-1 sm:p-2 text-[10px] sm:text-xs' : 'p-1.5 sm:p-3 text-[10px] sm:text-sm'} text-left font-medium text-text-secondary bg-bg-light rounded-tl-lg w-12 sm:w-auto`}>
-                <span className="hidden sm:inline">HOT度 / 行動</span>
+                <span className="hidden sm:inline">HOT度</span>
                 <span className="sm:hidden">HOT</span>
               </th>
               {actionStatusOrder.map((status, index) => (
@@ -63,6 +78,7 @@ const MatrixView = ({ customers, onCellClick, highlightedCustomer, compact = fal
                   className={`${compact ? 'p-1 sm:p-2 text-[8px] sm:text-[10px]' : 'p-1.5 sm:p-3 text-[9px] sm:text-xs'} text-center font-medium text-text-secondary bg-bg-light ${
                     index === actionStatusOrder.length - 1 ? 'rounded-tr-lg' : ''
                   }`}
+                  title={`行動: ${status}`}
                 >
                   <span className="sm:hidden">{shortStatusLabels[status]}</span>
                   <span className="hidden sm:inline">{status}</span>
