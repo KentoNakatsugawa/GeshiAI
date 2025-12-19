@@ -41,7 +41,12 @@ const SeatCard = ({ seat }: SeatCardProps) => {
           </div>
 
           {/* 作業中のシーン */}
-          <div className="flex flex-col items-center pt-5 sm:pt-6 pb-1 sm:pb-2 relative z-10">
+          <div className="flex flex-col items-center pt-4 sm:pt-5 pb-0.5 sm:pb-1 relative z-10">
+            {/* 担当者名（上部） */}
+            <p className="text-[9px] sm:text-[11px] text-gray-600 font-bold truncate max-w-full mb-1.5 sm:mb-2">
+              {representativeName.replace(/^B[12]\s/, '')}
+            </p>
+
             {/* デスク上面（俯瞰図） */}
             <div className="w-full bg-gradient-to-b from-amber-100 to-amber-200 rounded-lg p-2 sm:p-3 border border-amber-300 shadow-inner relative">
               {/* PCモニター */}
@@ -70,11 +75,21 @@ const SeatCard = ({ seat }: SeatCardProps) => {
               </div>
             </div>
 
-            <p className="text-[10px] sm:text-xs text-gray-400 mt-2 sm:mt-3 font-medium">作業中...</p>
-            <p className="text-[8px] sm:text-[10px] text-gray-500 mt-0.5 font-medium truncate max-w-full">
-              {representativeName.replace(/^B[12]\s/, '')}
-            </p>
+            {/* ステータス表示（商談中カードとの高さ合わせ） */}
+            <div className="mt-1.5 sm:mt-2 text-center">
+              <div className="inline-flex flex-col items-center">
+                <span className="text-[6px] sm:text-[8px] font-bold text-gray-400 leading-none mb-0.5">ステータス</span>
+                <span className="inline-block text-[8px] sm:text-[10px] px-2 sm:px-3 py-0.5 sm:py-1 rounded-full font-medium bg-gray-100 text-gray-500 border border-gray-200">
+                  作業中
+                </span>
+              </div>
+            </div>
           </div>
+        </div>
+
+        {/* 空白スペース（商談中カードの経過時間と高さを合わせる） */}
+        <div className="mt-1.5 sm:mt-2 text-center px-2 sm:px-3 py-0.5 sm:py-1 invisible">
+          <p className="text-[10px] sm:text-xs">-</p>
         </div>
       </div>
     );
