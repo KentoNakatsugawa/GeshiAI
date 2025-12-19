@@ -123,7 +123,7 @@ const SeatCard = ({ seat }: SeatCardProps) => {
               <div className="absolute -right-1.5 sm:-right-2 -top-0.5 sm:-top-1 text-sm sm:text-lg animate-bounce">💬</div>
             </div>
             <p className="text-[9px] sm:text-[11px] text-text-primary font-bold truncate max-w-full mt-0.5 sm:mt-1">
-              {customer.customerName}様
+              {customer.customerName} 様
             </p>
           </div>
 
