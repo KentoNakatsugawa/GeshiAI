@@ -123,7 +123,7 @@ const SeatCard = ({ seat }: SeatCardProps) => {
               <div className="absolute -right-1.5 sm:-right-2 -top-0.5 sm:-top-1 text-sm sm:text-lg animate-bounce">💬</div>
             </div>
             <p className="text-[9px] sm:text-[11px] text-text-primary font-bold truncate max-w-full mt-0.5 sm:mt-1">
-              {customer.customerName}
+              {customer.customerName}様
             </p>
           </div>
 
@@ -157,7 +157,7 @@ const SeatCard = ({ seat }: SeatCardProps) => {
         {/* 行動ステータス */}
         <div className="mt-1.5 sm:mt-2 text-center">
           <div className="inline-flex flex-col items-center">
-            <span className="text-[6px] sm:text-[8px] font-bold text-gray-400 leading-none mb-0.5">ステータス</span>
+            <span className="text-[6px] sm:text-[8px] font-bold text-gray-400 leading-none mb-0.5">商談ステータス</span>
             <span className={`inline-block text-[8px] sm:text-[10px] px-2 sm:px-3 py-0.5 sm:py-1 rounded-full font-medium ${colors.light} ${colors.text} border ${colors.border}`}>
               {customer.status}
             </span>
