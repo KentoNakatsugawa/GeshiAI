@@ -40,6 +40,7 @@ export interface Seat {
   customer: Customer | null;
   isOccupied: boolean;
   team: Team;
+  representativeName: string; // 担当者名（空席時も表示用）
 }
 
 // HOT度のカラーマッピング

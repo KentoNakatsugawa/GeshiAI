@@ -200,14 +200,21 @@ export const generateSeatsForTeam = (team: Team, customers: Customer[]): Seat[] 
   const totalSeats = 10;
   const seats: Seat[] = [];
   const teamCustomers = customers.filter(c => c.team === team);
+  const representatives = team === 'B1' ? representativesB1 : representativesB2;
 
   for (let i = 1; i <= totalSeats; i++) {
     const customer = teamCustomers.find(c => c.seatNumber === i) || null;
+    // 担当者名: 商談中ならcustomerから、空席なら座席番号に基づいて割り当て
+    const representativeName = customer
+      ? customer.representativeName
+      : representatives[i - 1] || `${team} 担当${i}`;
+
     seats.push({
       seatNumber: i,
       customer,
       isOccupied: customer !== null,
       team,
+      representativeName,
     });
   }
 

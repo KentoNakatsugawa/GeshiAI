@@ -7,7 +7,7 @@ interface SeatCardProps {
 
 const SeatCard = ({ seat }: SeatCardProps) => {
   const navigate = useNavigate();
-  const { customer, seatNumber, isOccupied } = seat;
+  const { customer, seatNumber, isOccupied, representativeName } = seat;
 
   // 経過時間を計算
   const getElapsedTime = (meetingTime: Date): string => {
@@ -71,6 +71,9 @@ const SeatCard = ({ seat }: SeatCardProps) => {
             </div>
 
             <p className="text-[10px] sm:text-xs text-gray-400 mt-2 sm:mt-3 font-medium">作業中...</p>
+            <p className="text-[8px] sm:text-[10px] text-gray-500 mt-0.5 font-medium truncate max-w-full">
+              {representativeName.replace(/^B[12]\s/, '')}
+            </p>
           </div>
         </div>
       </div>
