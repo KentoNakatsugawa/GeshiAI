@@ -22,68 +22,34 @@ const SeatCard = ({ seat }: SeatCardProps) => {
     return `${minutes}分`;
   };
 
-  // 商談していない場合（担当者が作業中）
+  // 商談していない場合（担当者が待機中）
   if (!isOccupied || !customer) {
     return (
-      <div className="flex flex-col items-center opacity-50">
-        <div className="w-full bg-gray-50 rounded-xl sm:rounded-2xl border border-gray-200 shadow-sm p-2 sm:p-4 relative overflow-hidden grayscale">
-          {/* 背景パターン */}
-          <div className="absolute inset-0 opacity-5">
-            <div className="absolute inset-0" style={{
-              backgroundImage: 'repeating-linear-gradient(45deg, #000 0, #000 1px, transparent 0, transparent 50%)',
-              backgroundSize: '10px 10px'
-            }} />
-          </div>
-
+      <div className="flex flex-col items-center opacity-40">
+        <div className="w-full bg-gray-100 rounded-xl sm:rounded-2xl border border-gray-200 p-2 sm:p-4 relative">
           {/* 座席番号 */}
-          <div className="absolute top-1.5 sm:top-2 left-1.5 sm:left-2 bg-gray-100 text-gray-400 text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 rounded-full font-medium">
+          <div className="absolute top-1.5 sm:top-2 left-1.5 sm:left-2 text-gray-400 text-[10px] sm:text-xs font-medium">
             席 {seatNumber}
           </div>
 
-          {/* 作業中のシーン */}
-          <div className="flex flex-col items-center pt-4 sm:pt-5 pb-0.5 sm:pb-1 relative z-10">
-            {/* 担当者名（上部） */}
-            <p className="text-[9px] sm:text-[11px] text-gray-600 font-bold truncate max-w-full mb-1.5 sm:mb-2">
+          {/* シンプルな待機中表示 */}
+          <div className="flex flex-col items-center pt-4 sm:pt-5 pb-2 sm:pb-3">
+            {/* 人物アイコン */}
+            <div className="w-12 sm:w-14 h-12 sm:h-14 bg-gray-200 rounded-full flex items-center justify-center mb-2 sm:mb-3">
+              <svg className="w-7 sm:w-8 h-7 sm:h-8 text-gray-400" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+              </svg>
+            </div>
+
+            {/* 担当者名 */}
+            <p className="text-[10px] sm:text-xs text-gray-500 font-medium truncate max-w-full">
               {representativeName.replace(/^B[12]\s/, '')}
             </p>
 
-            {/* デスク上面（俯瞰図） */}
-            <div className="w-full bg-gradient-to-b from-amber-100 to-amber-200 rounded-lg p-2 sm:p-3 border border-amber-300 shadow-inner relative">
-              {/* PCモニター */}
-              <div className="w-6 sm:w-8 h-4 sm:h-6 bg-gray-700 rounded-sm mx-auto mb-1 relative">
-                <div className="absolute inset-0.5 bg-blue-400 rounded-sm animate-pulse opacity-80" />
-              </div>
-              {/* キーボード */}
-              <div className="w-8 sm:w-10 h-1.5 sm:h-2 bg-gray-300 rounded-sm mx-auto" />
-            </div>
-
-            {/* 担当者（椅子に座っている） */}
-            <div className="relative -mt-2">
-              {/* 椅子の背もたれ */}
-              <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-10 sm:w-12 h-2 sm:h-3 bg-gray-400 rounded-t-lg" />
-              {/* 人物 */}
-              <div className="w-8 sm:w-10 h-8 sm:h-10 bg-gradient-to-b from-gray-300 to-gray-400 rounded-full flex items-center justify-center border-2 border-gray-400 relative z-10">
-                <svg className="w-4 sm:w-6 h-4 sm:h-6 text-gray-600" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-                </svg>
-              </div>
-              {/* 作業中インジケーター */}
-              <div className="absolute -top-1 -right-1 flex space-x-0.5">
-                <div className="w-1 sm:w-1.5 h-1 sm:h-1.5 bg-yellow-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
-                <div className="w-1 sm:w-1.5 h-1 sm:h-1.5 bg-yellow-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
-                <div className="w-1 sm:w-1.5 h-1 sm:h-1.5 bg-yellow-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
-              </div>
-            </div>
-
-            {/* ステータス表示（商談中カードとの高さ合わせ） */}
-            <div className="mt-1.5 sm:mt-2 text-center">
-              <div className="inline-flex flex-col items-center">
-                <span className="text-[6px] sm:text-[8px] font-bold text-gray-400 leading-none mb-0.5">ステータス</span>
-                <span className="inline-block text-[8px] sm:text-[10px] px-2 sm:px-3 py-0.5 sm:py-1 rounded-full font-medium bg-gray-100 text-gray-500 border border-gray-200">
-                  作業中
-                </span>
-              </div>
-            </div>
+            {/* 待機中テキスト */}
+            <p className="text-[9px] sm:text-[10px] text-gray-400 mt-1">
+              待機中
+            </p>
           </div>
         </div>
 
