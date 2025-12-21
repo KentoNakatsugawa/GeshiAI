@@ -25,8 +25,8 @@ const SeatCard = ({ seat }: SeatCardProps) => {
   // 商談していない場合（担当者が作業中）
   if (!isOccupied || !customer) {
     return (
-      <div className="flex flex-col items-center">
-        <div className="w-full bg-white rounded-xl sm:rounded-2xl border border-gray-200 shadow-sm p-2 sm:p-4 relative overflow-hidden">
+      <div className="flex flex-col items-center opacity-50">
+        <div className="w-full bg-gray-50 rounded-xl sm:rounded-2xl border border-gray-200 shadow-sm p-2 sm:p-4 relative overflow-hidden grayscale">
           {/* 背景パターン */}
           <div className="absolute inset-0 opacity-5">
             <div className="absolute inset-0" style={{

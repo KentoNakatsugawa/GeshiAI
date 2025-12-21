@@ -18,7 +18,6 @@ const Dashboard = () => {
   // チームセクションコンポーネント
   const TeamSection = ({ team, seats, customerCount }: { team: Team; seats: typeof seatsTeamB2; customerCount: number }) => {
     const totalSeats = seats.length;
-    const workingCount = totalSeats - customerCount;
 
     return (
       <div className="bg-white rounded-xl sm:rounded-2xl border border-border-accent overflow-hidden">
@@ -34,16 +33,12 @@ const Dashboard = () => {
                 <p className="text-white/80 text-[10px] sm:text-xs">リーダー：{teamLeaders[team]}</p>
               </div>
             </div>
-            <div className="text-right flex items-center gap-2 sm:gap-4">
-              <div>
-                <span className="text-lg sm:text-2xl font-bold text-white">{customerCount}</span>
-                <span className="text-white/80 text-[10px] sm:text-xs ml-0.5">商談</span>
+            <div className="text-right">
+              <div className="flex items-baseline justify-end gap-1">
+                <span className="text-xl sm:text-3xl font-bold text-white">{customerCount}</span>
+                <span className="text-white/80 text-xs sm:text-sm">商談中</span>
               </div>
-              <div className="text-white/60">|</div>
-              <div>
-                <span className="text-lg sm:text-2xl font-bold text-white/70">{workingCount}</span>
-                <span className="text-white/60 text-[10px] sm:text-xs ml-0.5">作業</span>
-              </div>
+              <p className="text-white/60 text-[10px] sm:text-xs">出勤 {totalSeats}名</p>
             </div>
           </div>
         </div>
