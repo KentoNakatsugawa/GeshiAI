@@ -42,7 +42,7 @@ const SeatCard = ({ seat }: SeatCardProps) => {
             </div>
 
             {/* 担当者名 */}
-            <p className="text-[10px] sm:text-xs text-gray-500 font-medium truncate max-w-full">
+            <p className="text-[11px] sm:text-sm text-gray-700 font-bold truncate max-w-full">
               {representativeName.replace(/^B[12]\s/, '')}
             </p>
 
