@@ -44,8 +44,8 @@ const Dashboard = () => {
         </div>
 
         {/* 座席グリッド - 全席表示 */}
-        <div className="p-3 sm:p-6">
-          <div className="grid grid-cols-2 xs:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 sm:gap-4">
+        <div className="p-3 sm:p-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 gap-2 sm:gap-3">
             {seats.map((seat) => (
               <SeatCard key={`${team}-${seat.seatNumber}`} seat={seat} />
             ))}
@@ -84,8 +84,8 @@ const Dashboard = () => {
           </div>
         </div>
 
-        {/* Team Sections */}
-        <div className="space-y-4 sm:space-y-8">
+        {/* Team Sections - 横並び */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
           <TeamSection team="B1" seats={seatsTeamB1} customerCount={teamB1Customers.length} />
           <TeamSection team="B2" seats={seatsTeamB2} customerCount={teamB2Customers.length} />
         </div>

@@ -27,7 +27,7 @@ const Header = () => {
                   : 'text-text-secondary hover:text-primary hover:bg-bg-light'
               }`}
             >
-              商談テーブル
+              商談
             </Link>
             <Link
               to="/matrix"
@@ -38,6 +38,16 @@ const Header = () => {
               }`}
             >
               マトリックス
+            </Link>
+            <Link
+              to="/summary"
+              className={`px-2 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-colors ${
+                location.pathname === '/summary'
+                  ? 'bg-primary text-white'
+                  : 'text-text-secondary hover:text-primary hover:bg-bg-light'
+              }`}
+            >
+              実績
             </Link>
           </nav>
         </div>

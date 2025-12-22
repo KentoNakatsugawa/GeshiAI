@@ -3,6 +3,7 @@ import Header from './components/Header';
 import Dashboard from './pages/Dashboard';
 import SalesDetail from './pages/SalesDetail';
 import MatrixPage from './pages/MatrixPage';
+import Summary from './pages/Summary';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
             <Route path="/" element={<Dashboard />} />
             <Route path="/detail/:customerId" element={<SalesDetail />} />
             <Route path="/matrix" element={<MatrixPage />} />
+            <Route path="/summary" element={<Summary />} />
           </Routes>
         </main>
       </div>

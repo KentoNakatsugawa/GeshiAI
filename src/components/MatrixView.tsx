@@ -11,6 +11,8 @@ interface MatrixViewProps {
 
 // モバイル用の短縮ラベル
 const shortStatusLabels: Record<ActionStatus, string> = {
+  '契約作業中': '契約',
+  '契約後対応': '対応',
   'クロージング': 'CL',
   '入金確認': '入金',
   '納車流れ': '納車',

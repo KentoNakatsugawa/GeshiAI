@@ -1,4 +1,4 @@
-import { Customer, MeetingHistory, Seat, HotnessLevel, ActionStatus, Team } from '../types';
+import { Customer, MeetingHistory, Seat, HotnessLevel, ActionStatus, Team, RepresentativeStatus } from '../types';
 
 // 担当営業リスト
 const representativesB2 = [
@@ -30,6 +30,9 @@ export const mockCustomersTeamB2: Customer[] = [
     status: '入金確認',
     seatNumber: 2,
     team: 'B2',
+    negotiationType: '新規',
+    currentTopic: '入金方法の確認中。ローン審査結果を説明している。',
+    script: '入金確認スクリプト: 審査結果をお伝えします。月々のお支払いは...',
   },
   {
     id: 'b2-3',
@@ -40,6 +43,9 @@ export const mockCustomersTeamB2: Customer[] = [
     status: 'スコアプレゼン',
     seatNumber: 3,
     team: 'B2',
+    negotiationType: '再交渉',
+    currentTopic: '前回より条件改善。金利プランの再提案中。',
+    script: 'スコアプレゼン: お客様のスコアに基づき、最適なプランをご提案...',
   },
   {
     id: 'b2-4',
@@ -47,9 +53,12 @@ export const mockCustomersTeamB2: Customer[] = [
     meetingTime: getTimeMinutesAgo(55),
     representativeName: representativesB2[3],
     hotness: 'A',
-    status: 'クロージング',
+    status: '契約作業中',
     seatNumber: 4,
     team: 'B2',
+    negotiationType: '新規',
+    currentTopic: '契約書の記入中。保証内容の最終確認。',
+    script: '契約締結: 契約内容をご確認ください。保証期間は...',
   },
   {
     id: 'b2-5',
@@ -60,6 +69,9 @@ export const mockCustomersTeamB2: Customer[] = [
     status: 'ヒアリング',
     seatNumber: 5,
     team: 'B2',
+    negotiationType: '新規',
+    currentTopic: '初回ヒアリング。予算と希望車種を確認中。',
+    script: 'ヒアリング: お車のご利用目的をお聞かせください...',
   },
   {
     id: 'b2-6',
@@ -67,9 +79,12 @@ export const mockCustomersTeamB2: Customer[] = [
     meetingTime: getTimeMinutesAgo(27),
     representativeName: representativesB2[5],
     hotness: 'S',
-    status: '納車流れ',
+    status: '契約後対応',
     seatNumber: 7,
     team: 'B2',
+    negotiationType: '新規',
+    currentTopic: '納車日程の調整。オプション取付の確認。',
+    script: '契約後フォロー: 納車予定日は○月○日となります...',
   },
   {
     id: 'b2-7',
@@ -80,6 +95,9 @@ export const mockCustomersTeamB2: Customer[] = [
     status: '初期スコア車両提示',
     seatNumber: 8,
     team: 'B2',
+    negotiationType: '新規',
+    currentTopic: '在庫車両3台を提示。色と装備の説明中。',
+    script: '車両提示: こちらが今月のおすすめ車両です...',
   },
 ];
 
@@ -94,6 +112,9 @@ export const mockCustomersTeamB1: Customer[] = [
     status: 'ヒアリング',
     seatNumber: 1,
     team: 'B1',
+    negotiationType: '新規',
+    currentTopic: '初回来店。ご要望をヒアリング中。',
+    script: 'ヒアリング: 本日はご来店ありがとうございます...',
   },
   {
     id: 'b1-2',
@@ -104,6 +125,9 @@ export const mockCustomersTeamB1: Customer[] = [
     status: 'スコアプレゼン',
     seatNumber: 2,
     team: 'B1',
+    negotiationType: '新規',
+    currentTopic: 'スコア結果の説明。金利条件の詳細を案内中。',
+    script: 'スコアプレゼン: 審査結果が出ましたのでご説明します...',
   },
   {
     id: 'b1-3',
@@ -114,16 +138,22 @@ export const mockCustomersTeamB1: Customer[] = [
     status: '入金確認',
     seatNumber: 4,
     team: 'B1',
+    negotiationType: '再交渉',
+    currentTopic: '頭金の増額検討中。支払いシミュレーション中。',
+    script: '入金確認: ご希望の支払い方法を確認させてください...',
   },
   {
     id: 'b1-4',
     customerName: '松本 健太',
-    meetingTime: getTimeMinutesAgo(15),
+    meetingTime: getTimeMinutesAgo(75),
     representativeName: representativesB1[3],
     hotness: 'E',
     status: 'ヒアリング',
     seatNumber: 5,
     team: 'B1',
+    negotiationType: '新規',
+    currentTopic: '長時間商談。家族構成と利用シーンを詳しく確認中。',
+    script: 'ヒアリング: ご家族でのご利用シーンをお聞かせください...',
   },
   {
     id: 'b1-5',
@@ -134,6 +164,9 @@ export const mockCustomersTeamB1: Customer[] = [
     status: 'クロージング',
     seatNumber: 6,
     team: 'B1',
+    negotiationType: '新規',
+    currentTopic: '最終価格の交渉中。下取り査定額を提示。',
+    script: 'クロージング: 本日ご契約いただける場合、特別価格で...',
   },
   {
     id: 'b1-6',
@@ -144,6 +177,9 @@ export const mockCustomersTeamB1: Customer[] = [
     status: '納車流れ',
     seatNumber: 8,
     team: 'B1',
+    negotiationType: '新規',
+    currentTopic: '納車の流れを説明。必要書類の確認中。',
+    script: '納車説明: 納車までの流れをご説明します...',
   },
   {
     id: 'b1-7',
@@ -154,16 +190,22 @@ export const mockCustomersTeamB1: Customer[] = [
     status: '初期スコア車両提示',
     seatNumber: 9,
     team: 'B1',
+    negotiationType: '再交渉',
+    currentTopic: '前回と異なる車種を提案中。',
+    script: '車両提示: 前回ご検討いただいた車種とは別に...',
   },
   {
     id: 'b1-8',
     customerName: '斎藤 浩一',
-    meetingTime: getTimeMinutesAgo(58),
+    meetingTime: getTimeMinutesAgo(90),
     representativeName: representativesB1[7],
     hotness: 'S',
-    status: 'スコアプレゼン',
+    status: '契約作業中',
     seatNumber: 10,
     team: 'B1',
+    negotiationType: '新規',
+    currentTopic: '契約書記入中。重要事項説明が完了。',
+    script: '契約締結: 重要事項の説明は以上となります...',
   },
 ];
 
@@ -195,12 +237,19 @@ export const mockMeetingHistory: MeetingHistory[] = [
   },
 ];
 
+// 休憩中の担当者（各チーム1名程度）
+const breakingRepresentatives: Record<Team, number[]> = {
+  'B1': [3],  // 席番号3の担当者は休憩中
+  'B2': [6],  // 席番号6の担当者は休憩中
+};
+
 // チーム別座席配置生成（各チーム10席）
 export const generateSeatsForTeam = (team: Team, customers: Customer[]): Seat[] => {
   const totalSeats = 10;
   const seats: Seat[] = [];
   const teamCustomers = customers.filter(c => c.team === team);
   const representatives = team === 'B1' ? representativesB1 : representativesB2;
+  const breakingSeats = breakingRepresentatives[team];
 
   for (let i = 1; i <= totalSeats; i++) {
     const customer = teamCustomers.find(c => c.seatNumber === i) || null;
@@ -209,12 +258,23 @@ export const generateSeatsForTeam = (team: Team, customers: Customer[]): Seat[] 
       ? customer.representativeName
       : representatives[i - 1] || `${team} 担当${i}`;
 
+    // 担当者ステータスを決定
+    let representativeStatus: RepresentativeStatus;
+    if (customer) {
+      representativeStatus = '商談中';
+    } else if (breakingSeats.includes(i)) {
+      representativeStatus = '休憩中';
+    } else {
+      representativeStatus = '待機中';
+    }
+
     seats.push({
       seatNumber: i,
       customer,
       isOccupied: customer !== null,
       team,
       representativeName,
+      representativeStatus,
     });
   }
 
@@ -258,6 +318,8 @@ export const getCustomerCountByHotness = (customers: Customer[]): Record<Hotness
 // 行動別の顧客数を取得
 export const getCustomerCountByStatus = (customers: Customer[]): Record<ActionStatus, number> => {
   const counts: Record<ActionStatus, number> = {
+    '契約作業中': 0,
+    '契約後対応': 0,
     'クロージング': 0,
     '入金確認': 0,
     '納車流れ': 0,
@@ -271,4 +333,14 @@ export const getCustomerCountByStatus = (customers: Customer[]): Record<ActionSt
   });
 
   return counts;
+};
+
+// 実績サマリー用データ（今月）
+export const getMonthlySummary = () => {
+  return {
+    contracts: 23,      // 今月の契約数
+    meetings: 156,      // 今月の商談数
+    calls: 342,         // 今月の通話数
+    conversionRate: 14.7, // 契約率
+  };
 };
